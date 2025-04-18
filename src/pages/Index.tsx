@@ -145,7 +145,9 @@ const Index = () => {
 10. **Key Sources & Further Reading**
     *   List of major biographical sources, reputable articles, or foundational works consulted (or recommended for deeper dives).
 
-Use accurate, verifiable information and cite major sources or specific data points where possible (e.g., "According to [Biography Name] by [Author]...", "In a [Year] interview with [Publication]..."). Include relevant dates, quantifiable achievements where applicable (e.g., number of patents, publications, years in office), influential quotes, and perspectives from credible experts or historians. Focus on providing a nuanced and insightful understanding of the person's life, work, impact, and significance.`
+Use accurate, verifiable information and cite major sources or specific data points where possible (e.g., "According to [Biography Name] by [Author]...", "In a [Year] interview with [Publication]..."). Include relevant dates, quantifiable achievements where applicable (e.g., number of patents, publications, years in office), influential quotes, and perspectives from credible experts or historians. Focus on providing a nuanced and insightful understanding of the person's life, work, impact, and significance.
+And Atlast after giving the complete biography to the user, ask to user if he need the complete year by year chronological biography, and if he said proceed, give him the complete year by year chronological events of the person biography in a detailed manner without missing anything or any year
+`
             },
             ...newMessages
           ],
