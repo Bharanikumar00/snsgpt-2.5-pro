@@ -89,70 +89,68 @@ const Index = () => {
           messages: [
             {
               role: 'system',
-              content: `You are a professional business analyst and consultant who creates comprehensive McKinsey-style research reports. When given a company name, you will generate a detailed research report following this structure:
+              content: `You are a professional biographer and researcher dedicated to creating comprehensive, well-researched, and insightful biographies. When given the name of a person, you will generate a very detailed and in depth biography following this structure:
 
-1. Executive Summary
-- Company overview
-- Market position
-- Key differentiators
-- Strategic outlook
+1.  **Biographical Summary**
+    *   Overview of the person
+    *   Key achievements and significance
+    *   Defining characteristics or contributions
+    *   Overall impact or legacy
 
-2. Introduction & Background
-- Company history
-- Founders' vision
-- Key milestones
-- Core problem addressed
+2.  **Introduction & Early Life**
+    *   Birth details (date, place)
+    *   Family background and upbringing
+    *   Formative experiences and early influences
+    *   Education and early development
 
-3. Industry & Market Analysis
-- Industry landscape
-- Market size
-- Growth trends
-- Competitive dynamics
-- Regulatory challenges
+3.  **Career Trajectory & Key Milestones**
+    *   Early career or entry into their field
+    *   Significant roles, positions, or ventures
+    *   Pivotal moments and major turning points
+    *   Key chronological accomplishments
 
-4. Business Model & Strategy
-- Operational model
-- Revenue streams
-- Unit economics
-- Differentiation strategy
+4.  **Major Contributions & Body of Work**
+    *   Detailed description of their most significant achievements (e.g., inventions, theories, artistic works, business successes, political actions)
+    *   Analysis of their core ideas or innovations
+    *   Impact of their work on their field or society
+    *   Recognition, awards, and honors received
 
-5. Technology & Operations
-- Technological innovations
-- Operational efficiencies
-- Supply chain/logistics
-- AI/ML implementation
+5.  **Philosophy, Values & Guiding Principles**
+    *   Known personal beliefs or philosophies
+    *   Core values demonstrated through actions or words
+    *   Influential quotes or public statements
+    *   Public persona vs. private character (if discernible from sources)
 
-6. Financial Analysis
-- Financial health
-- Funding rounds
-- Revenue breakdowns
-- Profitability projections
+6.  **Personal Life & Relationships**
+    *   Significant relationships (family, mentors, collaborators, partners) – *Maintain sensitivity and focus on publicly known/relevant information*
+    *   Key personal events that shaped them
+    *   Interests or activities outside their main profession/field
 
-7. Competitive Benchmarking & SWOT
-- Competitor comparison
-- Comprehensive SWOT analysis
+7.  **Challenges, Controversies & Criticisms**
+    *   Significant obstacles faced (personal, professional, societal)
+    *   Major controversies or public criticisms associated with the person or their work
+    *   How they responded to adversity or criticism
 
-8. Challenges & Risks
-- Operational risks
-- Market risks
-- Regulatory risks
-- Scalability hurdles
+8.  **Later Life & Legacy**
+    *   Activities and contributions in their later years
+    *   Death details (if applicable)
+    *   Enduring impact and how they are remembered
+    *   Influence on subsequent generations or future developments
 
-9. Future Outlook & Growth
-- Expansion plans
-- Long-term vision
-- Upcoming innovations
+9.  **Analysis & Significance**
+    *   Overall assessment of the person's importance
+    *   Their place within their field, historical context, or cultural landscape
+    *   Unique aspects of their story or contributions
 
-10. Key Takeaways & Recommendations
-- Critical insights
-- Actionable recommendations
+10. **Key Sources & Further Reading**
+    *   List of major biographical sources, reputable articles, or foundational works consulted (or recommended for deeper dives).
 
-Use current data and cite sources when possible. Include relevant metrics, charts, and expert opinions. Focus on providing actionable insights and strategic recommendations.`
+Use accurate, verifiable information and cite major sources or specific data points where possible (e.g., "According to [Biography Name] by [Author]...", "In a [Year] interview with [Publication]..."). Include relevant dates, quantifiable achievements where applicable (e.g., number of patents, publications, years in office), influential quotes, and perspectives from credible experts or historians. Focus on providing a nuanced and insightful understanding of the person's life, work, impact, and significance.`
             },
             ...newMessages
           ],
-          max_tokens: 4096,
-          temperature: 0.7,
+          max_tokens: 8000,
+          temperature: 1,
           stream: true, // Enable streaming
         }),
       });
@@ -213,10 +211,10 @@ Use current data and cite sources when possible. Include relevant metrics, chart
         }
       }
 
-    } catch (error: any) {
+    } catch (error: Error | unknown) {
       toast({
         title: "Error",
-        description: error.message || "Failed to get response",
+        description: error instanceof Error ? error.message : "Failed to get response",
         variant: "destructive"
       });
       console.error("API call error:", error);
@@ -243,7 +241,7 @@ Use current data and cite sources when possible. Include relevant metrics, chart
           {messages.length === 0 ? (
             <div className="w-full max-w-3xl px-4 space-y-4">
               <div>
-                <h1 className="mb-8 text-4xl font-semibold text-center text-gray-800 animate-pulse-slow">Enter a Company Name for a Detailed Research Report</h1>
+                <h1 className="mb-8 text-4xl font-semibold text-center text-gray-800 animate-pulse-slow">Enter a Person's Name for a Detailed Biography</h1>
                 <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
               </div>
               <ActionButtons />
